@@ -1,6 +1,6 @@
 import type { RuleSet } from './inflector.ts';
 
-const defaultRules: RuleSet = {
+export const defaultRules: RuleSet = {
   plurals: [
     [/$/, 's'],
     [/s$/i, 's'],
@@ -82,5 +82,3 @@ const defaultRules: RuleSet = {
     'meta',
   ],
 };
-
-export default defaultRules;

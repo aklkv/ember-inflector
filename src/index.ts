@@ -1,4 +1,5 @@
-import { Inflector, pluralize, singularize } from './lib/system.ts';
+import Inflector from './lib/system/inflector.ts';
+import { pluralize, singularize } from './lib/system/string.ts';
 
 export default Inflector;
 

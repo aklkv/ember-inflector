@@ -1,4 +1,4 @@
-import { pluralize } from '../index.ts';
+import { pluralize } from '../lib/system/string.ts';
 
 export interface PluralizeNamedArgs {
   'without-count'?: boolean;

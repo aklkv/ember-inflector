@@ -1,4 +1,4 @@
-import { singularize } from '../index.ts';
+import { singularize } from '../lib/system/string.ts';
 
 /**
  *

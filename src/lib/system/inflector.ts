@@ -1,4 +1,4 @@
-import defaultRules from './inflections.ts';
+import { defaultRules } from './inflections.ts';
 
 /**
  * A single inflection rule: the pattern to match, and its replacement.
