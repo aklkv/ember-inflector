@@ -290,63 +290,97 @@ module('Unit | Utility | inflector', function (hooks) {
   });
 
   test('plural', function (assert) {
-    assert.expect(1);
-
-    const inflector = new Inflector({
-      plurals: [
-        [/1/, '1'],
-        [/2/, '2'],
-        [/3/, '3'],
-      ],
-    });
-
-    assert.equal(inflector.rules.plurals.length, 3);
-  });
-
-  test('singular', function (assert) {
-    assert.expect(1);
-
-    const inflector = new Inflector({
-      singular: [
-        [/1/, '1'],
-        [/2/, '2'],
-        [/3/, '3'],
-      ],
-    });
-
-    assert.equal(inflector.rules.singular.length, 3);
-  });
-
-  test('irregular', function (assert) {
-    assert.expect(6);
-
-    const inflector = new Inflector({
-      irregularPairs: [
-        ['1', '12'],
-        ['2', '22'],
-        ['3', '32'],
-      ],
-    });
-
-    assert.equal(inflector.rules.irregular['1'], '12');
-    assert.equal(inflector.rules.irregular['2'], '22');
-    assert.equal(inflector.rules.irregular['3'], '32');
-
-    assert.equal(inflector.rules.irregularInverse['12'], '1');
-    assert.equal(inflector.rules.irregularInverse['22'], '2');
-    assert.equal(inflector.rules.irregularInverse['32'], '3');
-  });
-
-  test('uncountable', function (assert) {
     assert.expect(3);
 
     const inflector = new Inflector({
-      uncountable: ['1', '2', '3'],
+      plurals: [
+        [/$/, 's'],
+        [/(x)$/i, '$1es'],
+      ],
     });
 
-    assert.true(inflector.rules.uncountable['1']);
-    assert.true(inflector.rules.uncountable['2']);
-    assert.true(inflector.rules.uncountable['3']);
+    assert.equal(inflector.rules.plurals.length, 2, 'rules are loaded');
+    assert.equal(inflector.pluralize('cow'), 'cows', 'a rule is applied');
+    assert.equal(
+      inflector.pluralize('box'),
+      'boxes',
+      'a later rule takes precedence over an earlier match',
+    );
+  });
+
+  test('singular', function (assert) {
+    assert.expect(3);
+
+    const inflector = new Inflector({
+      singular: [
+        [/s$/i, ''],
+        [/(x)es$/i, '$1'],
+      ],
+    });
+
+    assert.equal(inflector.rules.singular.length, 2, 'rules are loaded');
+    assert.equal(inflector.singularize('cows'), 'cow', 'a rule is applied');
+    assert.equal(
+      inflector.singularize('boxes'),
+      'box',
+      'a later rule takes precedence over an earlier match',
+    );
+  });
+
+  test('irregular', function (assert) {
+    assert.expect(8);
+
+    const inflector = new Inflector({
+      plurals: [[/$/, 's']],
+      singular: [[/s$/i, '']],
+      irregularPairs: [
+        ['person', 'people'],
+        ['child', 'children'],
+      ],
+    });
+
+    assert.equal(inflector.rules.irregular['person'], 'people');
+    assert.equal(inflector.rules.irregular['child'], 'children');
+    assert.equal(inflector.rules.irregularInverse['people'], 'person');
+    assert.equal(inflector.rules.irregularInverse['children'], 'child');
+
+    assert.equal(
+      inflector.pluralize('person'),
+      'people',
+      'an irregular pair wins over the regular rule',
+    );
+    assert.equal(inflector.singularize('people'), 'person');
+    assert.equal(
+      inflector.pluralize('child'),
+      'children',
+      'an irregular pair wins over the regular rule',
+    );
+    assert.equal(inflector.singularize('children'), 'child');
+  });
+
+  test('uncountable', function (assert) {
+    assert.expect(5);
+
+    const inflector = new Inflector({
+      plurals: [[/$/, 's']],
+      singular: [[/s$/i, '']],
+      uncountable: ['sheep', 'money'],
+    });
+
+    assert.true(inflector.rules.uncountable['sheep']);
+    assert.true(inflector.rules.uncountable['money']);
+
+    assert.equal(
+      inflector.pluralize('sheep'),
+      'sheep',
+      'an uncountable word is left alone',
+    );
+    assert.equal(inflector.singularize('money'), 'money');
+    assert.equal(
+      inflector.pluralize('cow'),
+      'cows',
+      'a countable word still inflects',
+    );
   });
 
   test('inflect.nothing', function (assert) {
@@ -367,16 +401,24 @@ module('Unit | Utility | inflector', function (hooks) {
   });
 
   test('inflect.uncountable', function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     const inflector = new Inflector({
       plurals: [[/$/, 's']],
       uncountable: ['word'],
     });
 
-    const rules: InflectionRule[] = [];
-
-    assert.equal(inflector.inflect('word', rules), 'word');
+    // Pass the real rules, so the uncountable check has something to skip.
+    assert.equal(
+      inflector.inflect('word', inflector.rules.plurals),
+      'word',
+      'an uncountable word is returned untouched',
+    );
+    assert.equal(
+      inflector.inflect('other', inflector.rules.plurals),
+      'others',
+      'a countable word is still inflected',
+    );
   });
 
   test('inflect.irregular', function (assert) {
