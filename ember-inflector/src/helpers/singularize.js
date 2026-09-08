@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 import { singularize } from 'ember-inflector';
-import makeHelper from '../lib/utils/make-helper';
 
 /**
  *
@@ -16,6 +15,6 @@ import makeHelper from '../lib/utils/make-helper';
  * @method singularize
  * @param {String|Property} word word to singularize
  */
-export default makeHelper(function (params) {
-  return singularize(params[0]);
-});
+export default function singularizeHelper(word) {
+  return singularize(word);
+}
