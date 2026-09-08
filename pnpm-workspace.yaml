@@ -1,3 +1,27 @@
-packages:
-  - 'ember-inflector'
-  - 'test-app'
+allowBuilds:
+  esbuild: false
+  core-js: false
+
+# Docs: https://pnpm.io/settings
+# https://github.com/emberjs/rfcs/pull/907
+
+# we don't want addons to be bad citizens of the ecosystem
+autoInstallPeers: false
+
+# we want true isolation,
+# if a dependency is not declared, we want an error
+minimumReleaseAgeExclude:
+  - '@typescript-eslint/eslint-plugin@8.70.0'
+  - '@typescript-eslint/parser@8.70.0'
+  - '@typescript-eslint/project-service@8.70.0'
+  - '@typescript-eslint/scope-manager@8.70.0'
+  - '@typescript-eslint/tsconfig-utils@8.70.0'
+  - '@typescript-eslint/type-utils@8.70.0'
+  - '@typescript-eslint/types@8.70.0'
+  - '@typescript-eslint/typescript-estree@8.70.0'
+  - '@typescript-eslint/utils@8.70.0'
+  - '@typescript-eslint/visitor-keys@8.70.0'
+  - testem@3.21.0
+  - typescript-eslint@8.70.0
+
+resolvePeersFromWorkspaceRoot: false
