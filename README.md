@@ -5,7 +5,7 @@ Ember Inflector is a library for inflecting words between plural and singular fo
 
 ## Compatibility
 
-- Ember.js v3.16 or above
+- Ember.js v4.8 or above
 - Embroider or ember-auto-import v2
 
 ## Installation
@@ -68,6 +68,22 @@ Specify a count with the word, with the pluralization being based on the number 
 #### singularize
 ```hbs
 {{singularize 'octopi'}} -> octopus
+```
+
+### TypeScript
+
+Types are published with the addon, so no `@types/*` package is needed.
+
+If your app is not yet using strict mode templates, register the template
+helpers with [Glint](https://typed-ember.gitbook.io/glint) by extending the
+addon's registry:
+
+```typescript
+import type EmberInflectorRegistry from 'ember-inflector/template-registry';
+
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry extends EmberInflectorRegistry {}
+}
 ```
 
 
