@@ -2,16 +2,25 @@
   "solution": {
     "ember-inflector": {
       "impact": "major",
-      "oldVersion": "5.0.2",
-      "newVersion": "6.0.0",
+      "oldVersion": "6.0.0",
+      "newVersion": "7.0.0",
+      "tagName": "latest",
       "constraints": [
         {
           "impact": "major",
           "reason": "Appears in changelog section :boom: Breaking Change"
+        },
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
-      "pkgJSONPath": "./ember-inflector/package.json"
+      "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-03-12)\n\nember-inflector 6.0.0 (major)\n\n#### :boom: Breaking Change\n* `ember-inflector`\n  * [#513](https://github.com/emberjs/ember-inflector/pull/513) Added meta to the uncountable array because \"metum\" is not a word. ([@ErvinSabic](https://github.com/ErvinSabic))\n\n#### Committers: 1\n- Ervin Sabic ([@ErvinSabic](https://github.com/ErvinSabic))\n"
+  "description": "## Release (2026-09-08)\n\n* ember-inflector 7.0.0 (major)\n\n#### :boom: Breaking Change\n* `ember-inflector`\n  * [#537](https://github.com/emberjs/ember-inflector/pull/537) Migrate to flat ember-addon-blueprint and convert to TypeScript ([@aklkv](https://github.com/aklkv))\n\n#### :rocket: Enhancement\n* `ember-inflector`\n  * [#537](https://github.com/emberjs/ember-inflector/pull/537) Migrate to flat ember-addon-blueprint and convert to TypeScript ([@aklkv](https://github.com/aklkv))\n\n#### :house: Internal\n* `ember-inflector`\n  * [#537](https://github.com/emberjs/ember-inflector/pull/537) Migrate to flat ember-addon-blueprint and convert to TypeScript ([@aklkv](https://github.com/aklkv))\n  * [#535](https://github.com/emberjs/ember-inflector/pull/535) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 2\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
