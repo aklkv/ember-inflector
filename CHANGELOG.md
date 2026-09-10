@@ -1,5 +1,26 @@
 # Changelog
 
+## Release (2026-09-08)
+
+* ember-inflector 7.0.0 (major)
+
+#### :boom: Breaking Change
+* `ember-inflector`
+  * [#537](https://github.com/emberjs/ember-inflector/pull/537) Migrate to flat ember-addon-blueprint and convert to TypeScript ([@aklkv](https://github.com/aklkv))
+
+#### :rocket: Enhancement
+* `ember-inflector`
+  * [#537](https://github.com/emberjs/ember-inflector/pull/537) Migrate to flat ember-addon-blueprint and convert to TypeScript ([@aklkv](https://github.com/aklkv))
+
+#### :house: Internal
+* `ember-inflector`
+  * [#537](https://github.com/emberjs/ember-inflector/pull/537) Migrate to flat ember-addon-blueprint and convert to TypeScript ([@aklkv](https://github.com/aklkv))
+  * [#535](https://github.com/emberjs/ember-inflector/pull/535) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 2
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-03-12)
 
 ember-inflector 6.0.0 (major)
